@@ -40,7 +40,6 @@ function initialize() {
     initializeGrids();
     resetGrids();
     //setupControlButtons();
-
     
     setRandomDots();
     initializeSegments(); 
@@ -226,6 +225,17 @@ function countNeighbors(row, col) {
     return count;
 }
 
+function setTimeGridAlive(){
+    for (var i = 0; i < rows; i++) {
+        for (var j = 0; j < cols; j++) {
+            var cell = document.getElementById(i + "_" + j);
+            if (cell.getAttribute("class")=="time"){
+                grid[i][j] = 1;
+            }
+        }
+    }
+}
+
 function updateDigits(){
     var now = new Date();
 
@@ -265,6 +275,8 @@ function updateDigits(){
     setDigitOnGrid(minutes_digit2, 4);
     setDigitOnGrid(seconds_digit1, 5);
     setDigitOnGrid(seconds_digit2, 6);
+
+    setTimeGridAlive();
 }
 
 function initializeSegments(){
